@@ -6,7 +6,7 @@
 /*   By: cgarrot <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:08:24 by cgarrot      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:47:53 by cgarrot     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/16 02:16:21 by cgarrot     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
         }
         getch();
         refresh();
-        usleep(40000);
+        usleep(4000);
     }
     mvcur(0, COLS - 1, LINES - 1, 0);
     endwin();

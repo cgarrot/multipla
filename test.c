@@ -6,32 +6,61 @@
 /*   By: cgarrot <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 15:35:49 by cgarrot      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/05 03:15:41 by cgarrot     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 17:14:24 by cgarrot     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <curses.h>
+#include <ncurses.h>
+//#include <curses.h>
 #include "multipla.h"
-
-//static char *m_up[ + 1] = {D01, D02, D03, D04, D05, D06, D07, D08}
-
-//static char *r1[ + 1] = {R09, R10, R11, R12, R13}
-
-//static char *r2[ + 1] = {RR09, RR10, RR11, RR12, RR13}
+#include <signal.h>
+#include <unistd.h>
 
 int main(void)
 {
+	int x;
+	int y;
+	int i;
+
+	x = 200;
+	y = 20;
 	initscr();
-	raw();
-	int derp = 4;
-	printw("salut", derp);
-	addch('a');
-	move(12, 13);
-	mvprintw(15, 25, "Move");
-	//mvaddch(12, 50, RR09);
-	mvaddch(12, 50, "1");
-	getch();
+	noecho();
+	curs_set(0);
+	nodelay(stdscr, TRUE);
+	leaveok(stdscr, TRUE);
+	scrollok(stdscr, FALSE);
+	while (x-- != -30)
+	{
+		//printf("salut");
+		mvprintw(y, x, "                                ______________________________________  ");
+		mvprintw(y+1, x, "                              / /-----------|  |----------| |--------- \\  ");
+		mvprintw(y+2, x, "                            / /             |  |          | |           \\ ");
+		mvprintw(y+3, x, "                          / /               |  |          | |           | ");
+		mvprintw(y+4, x, "               _________/ /                 |  |          | |           | ");
+		mvprintw(y+5, x, "      _______(|___________\\_________________|  |----------===============\\ ");
+		mvprintw(y+6, x, "    /                  |           (=)       |           (=)|            /\\ ");
+		mvprintw(y+7, x, "  /                   |                     |                |           \\/\\ ");
+		mvprintw(y+8, x, " /<>      ________    |                     |                |________      \\ ");
+		if (++i % 2 == 0)
+		{
+			mvprintw(y+9, x, " |      /  ______  \\   |  <==================|===========>  /  ______  \\   -/ ");
+			mvprintw(y+10, x, " |)    |  / \\  / \\  |__|_____________________|_____________|  / \\  / \\  |  / ");
+			mvprintw(y+11, x, " \\____ | |   ()   | |______________________________________| |   ()   | |_/ ");
+			mvprintw(y+12, x, "          \\_/__\\_/                                            \\_/__\\_/ ");
+		}
+		else
+		{
+			mvprintw(y+9, x, " |      /  ______  \\   |  <==================|===========>  /  ______  \\   -/ ");
+			mvprintw(y+10, x, " |)    |  /  ||  \\  |__|_____________________|_____________|  /  ||  \\  |  / ");
+			mvprintw(y+11, x, " \\____ | |---()---| |______________________________________| |---()---| |_/ ");
+			mvprintw(y+12, x, "          \\__||__/                                            \\__||__/ ");
+		}
+		getch();
+		refresh();
+		usleep(40000);
+	}
 	endwin();
 
 	return (0);
